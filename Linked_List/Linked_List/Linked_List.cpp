@@ -149,9 +149,6 @@ public:
     }
 
 
-    //REVERSING A LINKED LIST
-
-
     void print()
     {
         if (isEmpty())
@@ -176,6 +173,22 @@ public:
         return head == NULL;
     }
 
+    //REVERSING A LINKED LIST
+
+    void reverseLLIteratively()
+    {
+        Node* previous = NULL, * current = head, * next = NULL;
+        while (current != NULL)
+        {
+            next = current->next;
+            current->next = previous;
+            previous = current;
+            current = next;
+        }
+        head = previous;
+
+    }
+
 };
 
 
@@ -194,7 +207,7 @@ int main()
     ll.print();
     ll.insertAtKNode(3, 3);
     ll.print();
-    ll.insertAtKNode(6, 8);
+    ll.reverseLLIteratively();
     ll.print();
 
 
