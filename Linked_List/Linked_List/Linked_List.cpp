@@ -173,7 +173,7 @@ public:
         return head == NULL;
     }
 
-    //REVERSING A LINKED LIST
+    //REVERSING A LINKED LIST Iteratively
 
     void reverseLLIteratively()
     {
@@ -187,6 +187,51 @@ public:
         }
         head = previous;
 
+    }
+
+    //REVERSING A LINKED LIST USING RECUSRION..
+
+
+    Node* reverseLLRecursiveUtil(Node* previous, Node* current)
+    {
+        if (current != NULL)
+        {
+            Node* head = reverseLLRecursiveUtil(current, current->next);
+            current->next = previous;
+            return head;
+        }
+        else
+        {
+            return previous;
+        }
+
+
+    }
+
+    Node* reverseLLRecursiveUtil2(Node* previous, Node* current)
+    {
+        if (current != NULL)
+        {
+            Node* next = current->next;
+            current->next = previous;
+            Node* head = reverseLLRecursiveUtil2(current, next); 
+            return head;
+        }
+        else
+        {
+            return previous;
+        }
+
+    }
+
+    void reverseLLRecursive()
+    {
+        head = reverseLLRecursiveUtil(NULL, head);
+    }
+
+    void reverseLLRecursive2()
+    {
+        head = reverseLLRecursiveUtil2(NULL, head);
     }
 
 };
@@ -207,9 +252,8 @@ int main()
     ll.print();
     ll.insertAtKNode(3, 3);
     ll.print();
-    ll.reverseLLIteratively();
+    ll.reverseLLRecursive2();
     ll.print();
-
 
     return 0;
 }
